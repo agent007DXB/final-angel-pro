@@ -1,17 +1,16 @@
 import React, { useRef, useState } from 'react';
-import './globals.css';
-import { X, Copy } from 'lucide-react';
 import Image from 'next/image';
 import QR from "@/app/QR.jpeg";
+import { X, Copy } from 'lucide-react';
 
 const Deposit = ({ onClose }) => {
-    const modalRef = useRef();
+    const modalRef = useRef(null); // Corrected initialization
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {
             onClose();
         }
-    }
+    };
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -20,9 +19,9 @@ const Deposit = ({ onClose }) => {
     const [copyText, setCopyText] = useState('TXii93QZLLpFEWpz32WES1bJiWQDjnrD14');
 
     const handleCopy = () => {
-        navigator.clipboard.writeText(copyText)
+        navigator.clipboard.writeText(copyText);
         alert('Copied');
-    }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,7 +32,7 @@ const Deposit = ({ onClose }) => {
         }
 
         try {
-            const res = await fetch("http://localhost:3000/api/deposit", {
+            const res = await fetch("/api/deposit", { // Corrected API endpoint
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
@@ -58,7 +57,7 @@ const Deposit = ({ onClose }) => {
                     <X size={30} />
                 </button>
                 <div className='bg-orange-600 rounded-xl px-20 py-10 flex flex-col gap-3 items-center mx-4'>
-                    <h1 className='text-3x1 font-bold text-white'>DEPOSIT YOUR FUNDS</h1>
+                    <h1 className='text-3xl font-bold text-white'>DEPOSIT YOUR FUNDS</h1> {/* Corrected typo in class name */}
                     <h3 className='font-bold text-black'>Scan this QR to pay</h3>
                     <Image src={QR} alt="QR Code" width={100} height={100} />
                     <p className='font-bold max-w-md text-center'>If there is a transaction fee, ensure it is included. The transfer amount must match the deposit amount.</p>
@@ -71,7 +70,7 @@ const Deposit = ({ onClose }) => {
                         <br /><br />
                         <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter the amount' name='amount' id='amount' value={amount} onChange={(e) => setAmount(e.target.value)} required></input>
                         <br /><br />
-                        <p>{copyText} <button onClick={handleCopy}><Copy /></button></p>
+                        <p>{copyText} <button type="button" onClick={handleCopy}><Copy /></button></p> {/* Changed button type to prevent form submission */}
                         <button type='submit' className='mt-4 w-full flex item-center justify-center gap-2 px-5 py-3 font-medium rounded-md bg-black' onClick={closeModal}>Submit</button>
                     </form>
                 </div>
