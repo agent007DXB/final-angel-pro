@@ -32,7 +32,7 @@ const Deposit = ({ onClose }) => {
         }
 
         try {
-            const res = await fetch("/api/deposit", { // Corrected API endpoint
+            const res = await fetch("/api/Deposit", { // Corrected API endpoint
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
@@ -57,7 +57,7 @@ const Deposit = ({ onClose }) => {
                     <X size={30} />
                 </button>
                 <div className='bg-orange-600 rounded-xl px-20 py-10 flex flex-col gap-3 items-center mx-4'>
-                    <h1 className='text-3xl font-bold text-white'>DEPOSIT YOUR FUNDS</h1> {/* Corrected typo in class name */}
+                    <h1 className='text-3xl font-bold text-white'>Deposit Your Funds</h1> {/* Corrected typo in class name */}
                     <h3 className='font-bold text-black'>Scan this QR to pay</h3>
                     <Image src={QR} alt="QR Code" width={100} height={100} />
                     <p className='font-bold max-w-md text-center'>If there is a transaction fee, ensure it is included. The transfer amount must match the deposit amount.</p>
