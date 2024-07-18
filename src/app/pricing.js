@@ -1,3 +1,5 @@
+// ThreeTierPricingHorizontal.js
+
 "use client";
 
 import {
@@ -24,10 +26,12 @@ const pricingTierTwo = [
   { id: 1, desc: "Greater than $1087 USD" },
   { id: 2, desc: "Less than $2151 USD" },
 ];
+
 const pricingTierThree = [
   { id: 1, desc: "Greater than $2151 USD" },
   { id: 2, desc: "Less than $10,000 USD" },
 ];
+
 const PackageTier = ({ title, options, typePlan, checked = false }) => {
   const colorTextLight = checked ? "white" : "orange.400";
   const bgColorLight = checked ? "orange.400" : "gray.100";
@@ -51,7 +55,7 @@ const PackageTier = ({ title, options, typePlan, checked = false }) => {
     >
       <List spacing={3} textAlign="start">
         {options.map((desc, id) => (
-          <ListItem key={desc.id}>
+          <ListItem key={id}>
             <ListIcon as={CheckCircleIcon} color="green.500" />
             {desc.desc}
           </ListItem>
@@ -72,6 +76,7 @@ const PackageTier = ({ title, options, typePlan, checked = false }) => {
     </Stack>
   );
 };
+
 const ThreeTierPricingHorizontal = () => {
   return (
     <div id="prices">
