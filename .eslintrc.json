@@ -1,6 +1,19 @@
-// src/app/deposit.js
+// deposit.js
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useRef, useState } from 'react';
-/* eslint-enable react-hooks/rules-of-hooks */
 
-// Your component code continues here...
+// Ensure correct naming and usage of hooks
+const Deposit = () => {
+  const inputRef = useRef(null);
+  const [value, setValue] = useState('');
+
+  // Your component logic here
+  return (
+    <div>
+      {/* JSX content */}
+    </div>
+  );
+};
+
+export default Deposit;
+/* eslint-enable react-hooks/rules-of-hooks */
