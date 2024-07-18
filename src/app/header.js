@@ -1,3 +1,4 @@
+// pages/header.js
 "use client";
 
 import {
@@ -13,7 +14,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
   useDisclosure,
   Link,
 } from "@chakra-ui/react";
@@ -73,13 +73,11 @@ export function Header() {
           direction={"row"}
           spacing={6}
         >
-          
           <Link
             href="https://wa.me/918696300285?text=Hello%2C%20I%20need%20help%20with%20my%20order"
             isExternal
           >
             <Button
-              // as={"a"}
               display={{ base: "none", md: "inline-flex" }}
               fontSize={"sm"}
               fontWeight={600}
@@ -113,8 +111,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Box
-                as="a"
+              <Link
                 p={2}
                 href={navItem.href ?? "#"}
                 fontSize={"sm"}
@@ -126,7 +123,7 @@ const DesktopNav = () => {
                 }}
               >
                 {navItem.label}
-              </Box>
+              </Link>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -154,8 +151,7 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }) => {
   return (
-    <Box
-      as="a"
+    <Link
       href={href}
       role={"group"}
       display={"block"}
@@ -186,7 +182,7 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           <Icon color={"pink.400"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-    </Box>
+    </Link>
   );
 };
 
@@ -209,12 +205,12 @@ const MobileNavItem = ({ label, children, href }) => {
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <Box
+      <Flex
         py={2}
-        as="a"
+        as={Link}
         href={href ?? "#"}
-        justifyContent="space-between"
-        alignItems="center"
+        justify={"space-between"}
+        align={"center"}
         _hover={{
           textDecoration: "none",
         }}
@@ -234,7 +230,7 @@ const MobileNavItem = ({ label, children, href }) => {
             h={6}
           />
         )}
-      </Box>
+      </Flex>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
@@ -247,9 +243,9 @@ const MobileNavItem = ({ label, children, href }) => {
         >
           {children &&
             children.map((child) => (
-              <Box as="a" key={child.label} py={2} href={child.href}>
+              <Link key={child.label} py={2} href={child.href}>
                 {child.label}
-              </Box>
+              </Link>
             ))}
         </Stack>
       </Collapse>
@@ -274,7 +270,6 @@ const NAV_ITEMS = [
     label: "Testimonials",
     href: "#testimonials",
   },
-
   {
     label: "Contact",
     href: "#contact",
