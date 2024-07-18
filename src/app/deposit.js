@@ -2,9 +2,11 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import QR from "@/app/QR.jpeg";
 import { X, Copy } from 'lucide-react';
+import { useRouter } from 'next/router';
 
 const Deposit = ({ onClose }) => {
     const modalRef = useRef(null); // Corrected initialization
+    const router = useRouter(); // Corrected router initialization
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {
@@ -62,16 +64,16 @@ const Deposit = ({ onClose }) => {
                     <Image src={QR} alt="QR Code" width={100} height={100} />
                     <p className='font-bold max-w-md text-center'>If there is a transaction fee, ensure it is included. The transfer amount must match the deposit amount.</p>
                     <form onSubmit={handleSubmit}>
-                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter your name' name='name' id='name' value={name} onChange={(e) => setName(e.target.value)} required></input>
+                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter your name' name='name' id='name' value={name} onChange={(e) => setName(e.target.value)} required />
                         <br /><br />
-                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter your email' name='email' id='email' value={email} onChange={(e) => setEmail(e.target.value)} required></input>
+                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter your email' name='email' id='email' value={email} onChange={(e) => setEmail(e.target.value)} required />
                         <br /><br />
-                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter your txid' name='txid' id='txid' value={txid} onChange={(e) => setTxid(e.target.value)} required></input>
+                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter your txid' name='txid' id='txid' value={txid} onChange={(e) => setTxid(e.target.value)} required />
                         <br /><br />
-                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter the amount' name='amount' id='amount' value={amount} onChange={(e) => setAmount(e.target.value)} required></input>
+                        <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter the amount' name='amount' id='amount' value={amount} onChange={(e) => setAmount(e.target.value)} required />
                         <br /><br />
                         <p>{copyText} <button type="button" onClick={handleCopy}><Copy /></button></p> {/* Changed button type to prevent form submission */}
-                        <button type='submit' className='mt-4 w-full flex item-center justify-center gap-2 px-5 py-3 font-medium rounded-md bg-black' onClick={closeModal}>Submit</button>
+                        <button type='submit' className='mt-4 w-full flex items-center justify-center gap-2 px-5 py-3 font-medium rounded-md bg-black'>Submit</button>
                     </form>
                 </div>
             </div>
