@@ -22,11 +22,11 @@ export async function connect() {
       process.exit();
     });
   } catch (error) {
-    console.log(error);
-    process.exit();
+    console.error("MongoDB connection error: ", error);
+    process.exit(1); // Exit with failure
   }
 }
 
-export default function some(){
-  
+export function some() {
+  // Placeholder function for some logic
 }
