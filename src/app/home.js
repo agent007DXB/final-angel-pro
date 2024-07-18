@@ -1,3 +1,4 @@
+// pages/split-screen.js
 "use client";
 import * as React from "react";
 import {
@@ -15,10 +16,8 @@ import {
   InputLeftAddon,
   useColorModeValue,
   useBreakpointValue,
-  IconProps,
   Icon,
   Divider,
-  AbsoluteCenter,
   InputRightAddon,
   Alert,
   AlertIcon,
@@ -47,11 +46,10 @@ import {
   FormHelperText,
 } from "@chakra-ui/react";
 import { useForm, ValidationError } from "@formspree/react";
-
 import { signIn, signOut, useSession } from "next-auth/react";
+
 const calculateInrAmount = (usdtVol) => {
   if (usdtVol > 0 && usdtVol < 500) {
-    console.log(usdtVol * 92);
     return usdtVol * 92;
   } else if (usdtVol >= 500 && usdtVol <= 1087) {
     return usdtVol * 92;
@@ -66,7 +64,11 @@ const calculateInrAmount = (usdtVol) => {
 
 export default function SplitScreen() {
   const session = useSession();
-  // console.log(session);
+  const primaryColor = "#fe5823";
+  const secondaryColor = "white";
+  const backgroundColor = "#222222";
+  const textColor = "#bebebe";
+
   return (
     <div id="sell">
       <Container
@@ -76,7 +78,7 @@ export default function SplitScreen() {
         p={0}
       >
         <Stack direction={{ base: "column", md: "row" }}>
-          <Flex p={8} flex={1} align={"center"} justify={"center"} bg="#222222">
+          <Flex p={8} flex={1} align={"center"} justify={"center"} bg={backgroundColor}>
             <Stack spacing={6} w={"full"} maxW={"lg"}>
               <Stack direction={"row"}>
                 <Text
@@ -100,11 +102,6 @@ export default function SplitScreen() {
                   alignSelf={"flex-start"}
                   rounded={"md"}
                 >
-                  {/* <Image
-                  src="https://www.supa-palette.com/images/brands/gumroad.svg"
-                  width="10"
-                  display="inline"
-                /> */}
                    ⭐️ ⭐️ ⭐️ ⭐️ ⭐️
                 </Text>
               </Stack>
@@ -120,19 +117,19 @@ export default function SplitScreen() {
                     position: "absolute",
                     bottom: 1,
                     left: 0,
-                    bg: "#fe5823",
+                    bg: primaryColor,
                     zIndex: -1,
                   }}
-                  color="white"
+                  color={secondaryColor}
                 >
                   AngelPro.Online
                 </Text>
-                <br />{" "}
-                <Text color={"#fe5823"} as={"span"}>
+                <br />
+                <Text color={primaryColor} as={"span"}>
                   Trade USDT
-                </Text>{" "}
+                </Text>
               </Heading>
-              <Text fontSize={{ base: "3xl", lg: "2xl" }} color="#bebebe">
+              <Text fontSize={{ base: "3xl", lg: "2xl" }} color={textColor}>
                 Angel pro is the #1 place to buy and sell USDT which is free,
                 and safe with 24/7 support.
               </Text>
@@ -141,8 +138,8 @@ export default function SplitScreen() {
                   <Button
                     size="lg"
                     w={{ base: "full", md: "100%" }}
-                    bg={"#fe5823"}
-                    color={"white"}
+                    bg={primaryColor}
+                    color={secondaryColor}
                   >
                     Price
                   </Button>
@@ -152,22 +149,20 @@ export default function SplitScreen() {
                     size="lg"
                     w={{ base: "full", md: "100%" }}
                     variant="outline"
-                    color="white"
-                    hover={{ color: "black" }}
+                    color={secondaryColor}
+                    _hover={{ color: "black" }}
                   >
                     Contact Us
                   </Button>
                 </Link>
-                <Link>
                 <Button
-                  as={"a"}
+                  as={Link}
+                  href={"#"}
                   w={{ base: "full", md: "100%" }}
                   fontSize={"sm"}
                   size="lg"
                   fontWeight={600}
-                  // variant={"link"}
-                  href={"#"}
-                  color={"white"}
+                  color={secondaryColor}
                   bg={"blue"}
                   _hover={{
                     bg: "red",
@@ -176,7 +171,6 @@ export default function SplitScreen() {
                 >
                   Sign In with Google
                 </Button>
-                </Link>
               </Stack>
             </Stack>
           </Flex>
