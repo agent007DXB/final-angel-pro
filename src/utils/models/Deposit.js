@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const depositSchema = new Schema(
+const DepositSchema = new Schema(
     {
         name: {
             type: String,
@@ -25,6 +25,6 @@ const depositSchema = new Schema(
     }
 );
 
-const Deposit = mongoose.model.Deposit || mongoose.model("Deposit", depositSchema);
+const Deposit = mongoose.model.Deposit || mongoose.model("Deposit", DepositSchema);
 
 export default Deposit;
