@@ -1,21 +1,39 @@
 // pages/admin.js
-"use client"
+"use client";
 
 import { useEffect, useState } from 'react';
 
 export default function AdminPage() {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchUsers() {
-      const response = await fetch('/api/user');
-      const data = await response.json();
-      setUsers(data);
-      console.log(data, "users")
+      try {
+        const response = await fetch('/api/user');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
     }
-    
+
     fetchUsers();
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div>
@@ -30,7 +48,7 @@ export default function AdminPage() {
           </tr>
         </thead>
         <tbody>
-          {users && users?.map(user => (
+          {users.map(user => (
             <tr key={user._id}>
               <td>{user.id}</td>
               <td>{user.name}</td>
