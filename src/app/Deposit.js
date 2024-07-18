@@ -4,9 +4,10 @@ import QR from "@/app/QR.jpeg";
 import { X, Copy } from 'lucide-react';
 import { useRouter } from 'next/router';
 
+// Function component renamed to start with uppercase letter
 const Deposit = ({ onClose }) => {
-    const modalRef = useRef(null); // Corrected initialization
-    const router = useRouter(); // Corrected router initialization
+    const modalRef = useRef(null); // Correct initialization
+    const router = useRouter(); // Correct router initialization
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {
@@ -14,10 +15,10 @@ const Deposit = ({ onClose }) => {
         }
     };
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [txid, setTxid] = useState("");
-    const [amount, setAmount] = useState("");
+    const [name, setName] = useState(""); // Correct initialization of useState
+    const [email, setEmail] = useState(""); // Correct initialization of useState
+    const [txid, setTxid] = useState(""); // Correct initialization of useState
+    const [amount, setAmount] = useState(""); // Correct initialization of useState
     const [copyText, setCopyText] = useState('TXii93QZLLpFEWpz32WES1bJiWQDjnrD14');
 
     const handleCopy = () => {
@@ -34,7 +35,7 @@ const Deposit = ({ onClose }) => {
         }
 
         try {
-            const res = await fetch("/api/Deposit", { // Corrected API endpoint
+            const res = await fetch("/api/deposit", { // Corrected API endpoint path to lowercase
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
