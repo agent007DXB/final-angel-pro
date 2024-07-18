@@ -48,15 +48,15 @@ import {
 
 import { useForm, ValidationError } from "@formspree/react";
 import { useSession } from "next-auth/react";
-import { Header } from "@/app/header";
-import Footer from "@/app/footer";
-import Features from "@/app/features";
-import Testimonials from "@/app/testimonials";
-import Prices from "@/app/pricing";
-import Contact from "@/app/contact";
-import Sell from "@/app/sell";
-import Home from "@/app/home";
-import Admin from "@/app/admin";
+import { Header } from "@/components/Header";
+import Footer from "@/components/Footer";
+import Features from "@/components/Features";
+import Testimonials from "@/components/Testimonials";
+import Prices from "@/components/Prices";
+import Contact from "@/components/Contact";
+import Sell from "@/components/Sell";
+import Home from "@/components/Home";
+import Admin from "@/components/Admin";
 
 function App() {
   const { status } = useSession();
