@@ -1,3 +1,4 @@
+// pages/footer.js
 "use client";
 
 import {
@@ -54,63 +55,16 @@ export default function LargeWithLogoLeft() {
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Product</ListHeader>
-            <Box as="a" href={"#sell"}>
-              Sell
-            </Box>
-            <Box as="a" href={"#features"}>
-              Features
-            </Box>
-            <Box as="a" href={"#prices"}>
-              Prices
-            </Box>
+            <Link href={"#sell"}>Sell</Link>
+            <Link href={"#features"}>Features</Link>
+            <Link href={"#prices"}>Prices</Link>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
-            <Box
-              as="a"
+            <Link
               href={
                 "https://docs.google.com/document/d/1B9NNZfpTVAnmRdvexPzmEAgJe9nWCmMwrp0blFBLpqs/edit?usp=sharing"
               }
-              target="_blank"
-            >
-              Terms & Conditions
-            </Box>
-            <Box as="a" href={"#testimonials"}>
-              Testimonials
-            </Box>
-            <Link
-              href="https://docs.google.com/document/d/1RJJaGGTfJ0zcoZgZpwxvFUIGX7-47A2k7AHol44-3pE/edit?usp=sharing"
               isExternal
             >
-              Privacy Policy
-            </Link>
-          </Stack>
-          <Stack align={"flex-start"}>
-            <ListHeader>Follow Us</ListHeader>
-            <Link
-              href="https://wa.me/918696300285?text=Hello%2C%20I%20need%20help%20with%20my%20order"
-              isExternal
-            >
-              Whatsapp
-            </Link>
-            <Box as="a" href={"#contact"}>
-              Contact
-            </Box>
-            {/* <Box as="a" href={"#"}>
-              Twitter
-            </Box>
-            <Box as="a" href={"#"}>
-              Dribbble
-            </Box>
-            <Box as="a" href={"#"}>
-              Instagram
-            </Box>
-            <Box as="a" href={"#"}>
-              LinkedIn
-            </Box> */}
-          </Stack>
-        </SimpleGrid>
-      </Container>
-    </Box>
-  );
-}
+              Terms
