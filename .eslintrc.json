@@ -1,6 +1,6 @@
-{
-  "extends": "next/core-web-vitals",
-  "rules": {
-    "react/no-unescaped-entities": 0
-  }
-}
+// src/app/deposit.js
+/* eslint-disable react-hooks/rules-of-hooks */
+import React, { useRef, useState } from 'react';
+/* eslint-enable react-hooks/rules-of-hooks */
+
+// Your component code continues here...
