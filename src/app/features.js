@@ -1,3 +1,4 @@
+// pages/features.js
 "use client";
 
 import {
@@ -25,7 +26,7 @@ const Feature = ({ text, icon, iconBg }) => {
         rounded={"full"}
         bg={iconBg}
       >
-        {icon}
+        <Icon as={icon} />
       </Flex>
       <Text fontWeight={600}>{text}</Text>
     </Stack>
@@ -66,17 +67,17 @@ export default function SplitWithImage() {
               }
             >
               <Feature
-                icon={<Icon as={ChatIcon} color={"yellow.500"} w={5} h={5} />}
+                icon={ChatIcon}
                 iconBg={useColorModeValue("yellow.100", "yellow.900")}
                 text={"24/7 Support"}
               />
               <Feature
-                icon={<Icon as={MinusIcon} color={"green.500"} w={5} h={5} />}
+                icon={MinusIcon}
                 iconBg={useColorModeValue("green.100", "green.900")}
                 text={"Free Transaction"}
               />
               <Feature
-                icon={<Icon as={UnlockIcon} color={"purple.500"} w={5} h={5} />}
+                icon={UnlockIcon}
                 iconBg={useColorModeValue("purple.100", "purple.900")}
                 text={"Secure & Safe"}
               />
