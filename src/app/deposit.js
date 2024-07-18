@@ -1,24 +1,31 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import QR from "@/app/QR.jpeg";
 import { X, Copy } from 'lucide-react';
 import { useRouter } from 'next/router';
+import useDepositForm from './useDepositForm'; // Update path to your custom hook
 
 const Deposit = ({ onClose }) => {
-    const modalRef = useRef(null); // Correct initialization of useRef
-    const router = useRouter(); // Correct initialization of useRouter
+    const {
+        name,
+        setName,
+        email,
+        setEmail,
+        txid,
+        setTxid,
+        amount,
+        setAmount,
+        copyText,
+        modalRef
+    } = useDepositForm();
+
+    const router = useRouter();
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {
             onClose();
         }
     };
-
-    const [name, setName] = useState(""); // Correct initialization of useState
-    const [email, setEmail] = useState(""); // Correct initialization of useState
-    const [txid, setTxid] = useState(""); // Correct initialization of useState
-    const [amount, setAmount] = useState(""); // Correct initialization of useState
-    const [copyText, setCopyText] = useState('TXii93QZLLpFEWpz32WES1bJiWQDjnrD14');
 
     const handleCopy = () => {
         navigator.clipboard.writeText(copyText);
@@ -34,7 +41,7 @@ const Deposit = ({ onClose }) => {
         }
 
         try {
-            const res = await fetch("/api/deposit", { // Corrected API endpoint path to lowercase
+            const res = await fetch("/api/Deposit", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json",
