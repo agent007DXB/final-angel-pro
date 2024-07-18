@@ -1,3 +1,5 @@
+// SplitScreen.js
+
 "use client";
 import React, { useEffect, useState } from "react";
 import {
@@ -15,45 +17,19 @@ import {
   InputLeftAddon,
   useColorModeValue,
   useBreakpointValue,
-  IconProps,
-  Icon,
   Divider,
-  AbsoluteCenter,
-  InputRightAddon,
   Alert,
   AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  Badge,
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogContent,
-  AlertDialogOverlay,
-  AlertDialogCloseButton,
-  useDisclosure,
   Link,
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
   FormControl,
   FormHelperText,
 } from "@chakra-ui/react";
 import { useForm, ValidationError } from "@formspree/react";
-import Deposit from "@/app/deposit"
 import { useRouter } from "next/navigation";
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 
 const calculateInrAmount = (usdtVol) => {
   if (usdtVol > 0 && usdtVol < 500) {
-    console.log(usdtVol * 92);
     return usdtVol * 92;
   } else if (usdtVol >= 500 && usdtVol <= 1087) {
     return usdtVol * 92;
@@ -67,18 +43,10 @@ const calculateInrAmount = (usdtVol) => {
 };
 
 export default function SplitScreen() {
-  // const bodyStyle = document.body.style
-  // const [isLocked, setIsLocked] = useState(
-  //   bodyStyle.overflowY === hidden
-  // )
-
-
-  
-
   const [showModal, setShowModal] = useState(false);
   const [state] = useForm("mrbzgkjq");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = React.useRef();
+  const router = useRouter();
   const [usdtVol, setUsdtVol] = useState("");
   const [phone, setPhone] = useState("");
   const [txref, setTxref] = useState("");
@@ -101,7 +69,7 @@ export default function SplitScreen() {
     e.preventDefault();
 
     if (!usdtVol || !phone || !txref || !accnum || !accifsc || !accname) {
-      alert("All the fields are required.");
+      alert("All fields are required.");
       return;
     }
 
@@ -126,46 +94,11 @@ export default function SplitScreen() {
 
   return (
     <div id="sell">
-      <Container
-        as={SimpleGrid}
-        maxW={"10xl"}
-        spacing={{ base: 10, lg: 32 }}
-        p={0}
-      >
+      <Container as={SimpleGrid} maxW={"10xl"} spacing={{ base: 10, lg: 32 }} p={0}>
         <Stack direction={{ base: "column", md: "row" }}>
           <Flex p={8} flex={1} align={"center"} justify={"center"} bg="#222222">
             <Stack spacing={6} w={"full"} maxW={"lg"}>
-              <Stack direction={"row"}>
-                <Text
-                  textTransform={"uppercase"}
-                  color={"orange.200"}
-                  fontWeight={600}
-                  fontSize={"sm"}
-                  bg={useColorModeValue("orange.500", "orange.900")}
-                  p={2}
-                  alignSelf={"flex-start"}
-                  rounded={"md"}
-                >
-                  +32K Trades
-                </Text>
-                <Text
-                  textTransform={"uppercase"}
-                  fontWeight={600}
-                  fontSize={"sm"}
-                  bg="#0a0a0a"
-                  p={2}
-                  alignSelf={"flex-start"}
-                  rounded={"md"}
-                >
-                  {/* <Image
-                  src="https://www.supa-palette.com/images/brands/gumroad.svg"
-                  width="10"
-                  display="inline"
-                /> */}
-                   ⭐️ ⭐️ ⭐️ ⭐️ ⭐️
-                </Text>
-              </Stack>
-
+              {/* Content for the left side of the split screen */}
               <Heading fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}>
                 <Text
                   as={"span"}
@@ -216,32 +149,27 @@ export default function SplitScreen() {
                   </Button>
                 </Link>
                 <Button
-            as={"a"}
-            w={{ base: "full", md: "100%" }}
-            fontSize={"sm"}
-            size="lg"
-            fontWeight={600}
-            // variant={"link"}
-            href={"#"}
-            color={"white"}
-            bg={"red"}
-            _hover={{
-              bg: "black",
-            }}
-            onClick={()=>signOut()}
-          >
-            Sign Out
-          </Button>
+                  as={"a"}
+                  w={{ base: "full", md: "100%" }}
+                  fontSize={"sm"}
+                  size="lg"
+                  fontWeight={600}
+                  href={"#"}
+                  color={"white"}
+                  bg={"red"}
+                  _hover={{
+                    bg: "black",
+                  }}
+                  onClick={()=>signOut()}
+                >
+                  Sign Out
+                </Button>
               </Stack>
             </Stack>
           </Flex>
+          {/* Content for the right side of the split screen */}
           <Flex flex={1} bg={"gray.50"}>
-            <Stack
-              p={{ base: 4, sm: 6, md: 8 }}
-              spacing={{ base: 8 }}
-              flex="1"
-              width="100%"
-            >
+            <Stack p={{ base: 4, sm: 6, md: 8 }} spacing={{ base: 8 }} flex="1" width="100%">
               <Stack spacing={2} align="center">
                 <Heading
                   color={"gray.800"}
@@ -267,17 +195,14 @@ export default function SplitScreen() {
                   >
                     Deposit
                   </Button>
-                  
                 </Link>
-                {/* <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
-                Please place your order to sell crypto.
-              </Text> */}
               </Stack>
-              <form onSubmit={handleSubmit} flex="1" width="100%">
-                <Stack spacing={4} flex="1" width="100%">
+              {/* Form for selling USDT */}
+              <form onSubmit={handleSubmit}>
+                <Stack spacing={4}>
                   <Box position="relative" padding="4">
                     <Divider />
-                    <AbsoluteCenter px="4">Order details</AbsoluteCenter>
+                    <Text fontSize="lg">Order details</Text>
                   </Box>
                   <InputGroup>
                     <Input
@@ -300,143 +225,4 @@ export default function SplitScreen() {
                     prefix="USDT"
                     field="usdt"
                     errors={state.errors}
-                  />
-                  <InputGroup>
-                    <InputLeftAddon>+91</InputLeftAddon>
-                    <Input
-                      type="tel"
-                      bg={"white"}
-                      placeholder="Mobile phone number"
-                      id="phone"
-                      name="phone"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      required
-                    />
-                    <ValidationError
-                      prefix="Phone"
-                      field="phone"
-                      errors={state.errors}
-                    />
-                  </InputGroup>
-                  <FormControl>
-                    <Input
-                      placeholder="Blockchain transaction reference ID"
-                      bg={"white"}
-                      id="txref"
-                      name="txref"
-                      value={txref}
-                      onChange={(e) => setTxref(e.target.value)}
-                      required
-                    />
-                    <FormHelperText>
-                      <Text>
-                        Address: <b>TPoeK8TsEUGAHSWFzEsUrvZTBXtMFuXwNo</b>
-                      </Text>
-                      <Text>
-                        Deposit network: <b> TRON TRC-20</b>
-                      </Text>
-                    </FormHelperText>
-                  </FormControl>
-
-                  <ValidationError
-                    prefix="Transaction reference"
-                    field="txref"
-                    errors={state.errors}
-                  />
-                  <Box position="relative" padding="5">
-                    <Divider />
-                    <AbsoluteCenter px="4">Your Bank account</AbsoluteCenter>
-                  </Box>
-                  <Input
-                    placeholder="Account number"
-                    bg={"white"}
-                    id="accnum"
-                    name="accnum"
-                    value={accnum}
-                      onChange={(e) => setAccnum(e.target.value)}
-                    required
-                  />
-                  <ValidationError
-                    prefix="Account number"
-                    field="accnum"
-                    errors={state.errors}
-                  />
-                  <Input
-                    placeholder="IFSC code"
-                    bg={"white"}
-                    id="accifsc"
-                    name="accifsc"
-                    value={accifsc}
-                      onChange={(e) => setAccifsc(e.target.value)}
-                    required
-                  />
-                  <ValidationError
-                    prefix="IFSC code"
-                    field="accifsc"
-                    errors={state.errors}
-                  />
-                  <Input
-                    placeholder="Account holder name"
-                    bg={"white"}
-                    id="accname"
-                    name="accname"
-                    value={accname}
-                      onChange={(e) => setAccname(e.target.value)}
-                    required
-                  />
-                  <ValidationError
-                    prefix="Account name"
-                    field="accname"
-                    errors={state.errors}
-                  />
-                </Stack>
-                <Button
-                  type="submit"
-                  fontFamily={"heading"}
-                  mt={8}
-                  w={"full"}
-                  bg="#fe5823"
-                  color={"white"}
-                  onClick={onOpen}
-                >
-                  Submit
-                </Button>
-              </form>
-            </Stack>
-          </Flex>
-          <AlertDialog
-            isOpen={isOpen}
-            leastDestructiveRef={cancelRef}
-            onClose={onClose}
-          >
-            <AlertDialogOverlay>
-              <AlertDialogContent>
-                <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                  Order placed successfully
-                </AlertDialogHeader>
-
-                <AlertDialogBody>
-                  Your order is processing. Our support channel{" "}
-                  <Link
-                    href="https://wa.me/918696300285?text=Hello%2C%20I%20need%20help%20with%20my%20order"
-                    isExternal
-                  >
-                    Contact us on whatsapp
-                  </Link>
-                </AlertDialogBody>
-
-                <AlertDialogFooter>
-                  <Button colorScheme="green" onClick={onClose} ml={3}>
-                    OK
-                  </Button>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialogOverlay>
-          </AlertDialog>
-        </Stack>
-          {showModal && <Deposit onClose={() => setShowModal(false)}/>}
-      </Container>
-    </div>
-  );
-}
+                 
