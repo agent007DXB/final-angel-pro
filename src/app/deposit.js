@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from 'next/image';
-import QR from "@/app/QR.jpeg";
+import useDepositForm from './useDepositForm'; // Ensure correct path to your custom hook
 import { X, Copy } from 'lucide-react';
 import { useRouter } from 'next/router';
-import useDepositForm from './useDepositForm'; // Update path to your custom hook
+import Image from 'next/image';
+import QR from "@/app/QR.jpeg";
 
 const Deposit = ({ onClose }) => {
     const {
@@ -17,7 +17,7 @@ const Deposit = ({ onClose }) => {
         setAmount,
         copyText,
         modalRef
-    } = useDepositForm();
+    } = useDepositForm(); // Use custom hook to access state and refs
 
     const router = useRouter();
 
