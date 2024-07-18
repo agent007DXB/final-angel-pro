@@ -1,5 +1,5 @@
 import connect from "@/utils/config/dbconfig";
-import Deposit from "@/utils/models/deposit";
+import Deposit from "@/utils/models/Deposit";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
@@ -16,7 +16,7 @@ export async function POST(request) {
       } catch (error) {
         // Handle any errors
         return NextResponse.json(
-          { message: "Error submiting deposit request", error: error.message },
+          { message: "Error submiting Deposit request", error: error.message },
           { status: 500 }
         );
       }
