@@ -4,10 +4,9 @@ import QR from "@/app/QR.jpeg";
 import { X, Copy } from 'lucide-react';
 import { useRouter } from 'next/router';
 
-// Function component renamed to start with uppercase letter
 const Deposit = ({ onClose }) => {
-    const modalRef = useRef(null); // Correct initialization
-    const router = useRouter(); // Correct router initialization
+    const modalRef = useRef(null); // Correct initialization of useRef
+    const router = useRouter(); // Correct initialization of useRouter
 
     const closeModal = (e) => {
         if (modalRef.current === e.target) {
@@ -60,7 +59,7 @@ const Deposit = ({ onClose }) => {
                     <X size={30} />
                 </button>
                 <div className='bg-orange-600 rounded-xl px-20 py-10 flex flex-col gap-3 items-center mx-4'>
-                    <h1 className='text-3xl font-bold text-white'>Deposit Your Funds</h1> {/* Corrected typo in class name */}
+                    <h1 className='text-3xl font-bold text-white'>Deposit Your Funds</h1>
                     <h3 className='font-bold text-black'>Scan this QR to pay</h3>
                     <Image src={QR} alt="QR Code" width={100} height={100} />
                     <p className='font-bold max-w-md text-center'>If there is a transaction fee, ensure it is included. The transfer amount must match the deposit amount.</p>
@@ -73,7 +72,7 @@ const Deposit = ({ onClose }) => {
                         <br /><br />
                         <input className='w-full px-4 py-3 text-black border-black rounded-md' placeholder='Enter the amount' name='amount' id='amount' value={amount} onChange={(e) => setAmount(e.target.value)} required />
                         <br /><br />
-                        <p>{copyText} <button type="button" onClick={handleCopy}><Copy /></button></p> {/* Changed button type to prevent form submission */}
+                        <p>{copyText} <button type="button" onClick={handleCopy}><Copy /></button></p>
                         <button type='submit' className='mt-4 w-full flex items-center justify-center gap-2 px-5 py-3 font-medium rounded-md bg-black'>Submit</button>
                     </form>
                 </div>
