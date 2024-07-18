@@ -1,3 +1,4 @@
+// pages/contact.js
 "use client";
 
 import {
@@ -9,14 +10,12 @@ import {
   Link,
   Button,
   VStack,
-  HStack,
   Wrap,
   WrapItem,
   FormControl,
   FormLabel,
   Input,
   InputGroup,
-  InputLeftElement,
   Textarea,
 } from "@chakra-ui/react";
 import {
@@ -51,23 +50,17 @@ export default function Contact() {
                     <Heading color="#fe5823" size="2xl">
                       Contact Us
                     </Heading>
-                    {/* <Text mt={{ sm: 3, md: 3, lg: 5 }} color="white">
-                      Fill up the form below to contact
-                    </Text> */}
                     <Box py={{ base: 5, sm: 5, md: 8, lg: 10 }}>
                       <VStack pl={0} spacing={3} alignItems="flex-start">
                         <Text color="#bebebe" fontWeight="bold">
-                          {" "}
                           <PhoneIcon color="#bebebe" size="20px" /> &nbsp;
                           +91-8696300285
                         </Text>
                         <Text color="#bebebe" fontWeight="bold">
-                          {" "}
-                          <EmailIcon color="#bebebe" size="20px" />
-                          &nbsp; hello@angelpro.online
+                          <EmailIcon color="#bebebe" size="20px" /> &nbsp;
+                          hello@angelpro.online
                         </Text>
                         <Text color="#bebebe" fontWeight="bold">
-                          {" "}
                           <MoonIcon color="#bebebe" size="20px" /> &nbsp;
                           Bangalore, India
                         </Text>
@@ -75,7 +68,7 @@ export default function Contact() {
                     </Box>
                   </Box>
                 </WrapItem>
-                <WrapItem w={{ base: "100%", lg: "auto" }}>
+                <WrapItem>
                   <Box
                     bg="white"
                     borderRadius="lg"
@@ -93,14 +86,13 @@ export default function Contact() {
                           <FormLabel>Message</FormLabel>
                           <Textarea placeholder="Your query" />
                         </FormControl>
-                        <FormControl float="right">
+                        <FormControl>
                           <Link
                             href="https://wa.me/918696300285?text=Hello%2C%20I%20need%20help%20with%20my%20order"
                             isExternal
                           >
                             <Button
-                              // as={"a"}
-                              display={{ base: "none", md: "inline-flex" }}
+                              display={{ base: "inline-flex" }}
                               fontSize={"sm"}
                               fontWeight={600}
                               color={"white"}
